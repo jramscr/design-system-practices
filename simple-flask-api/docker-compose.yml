@@ -1,0 +1,19 @@
+services:
+  server:
+    build: ./server
+    ports:
+      - "5002:5000"
+    networks:
+      - bridge-network
+  client:
+    build: ./client
+    ports:
+      - "5001:5001"
+    depends_on:
+      - server
+    networks:
+      - bridge-network
+
+networks:
+  bridge-network:
+    driver: bridge
